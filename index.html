@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Notes - Learn CSS3</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --css-orange: #e34c26;
+            --css-dark: #264de4;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .css-gradient {
+            background: linear-gradient(135deg, #e34c26 0%, #264de4 100%);
+        }
+        .note-card {
+            transition: all 0.3s ease;
+        }
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(227, 76, 38, 0.2);
+        }
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 8px;
+        }
+        .category-btn.active {
+            background: linear-gradient(135deg, #e34c26 0%, #264de4 100%);
+            color: white;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #e34c26;
+            box-shadow: 0 0 0 3px rgba(227, 76, 38, 0.2);
+        }
+        .css-logo-text {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e34c26 0%, #264de4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .css-badge {
+            background: linear-gradient(135deg, #e34c26 0%, #264de4 100%);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="css-gradient text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center animate-float">
+                            <span class="text-4xl font-bold text-[#e34c26]">3</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">CSS Notes</h1>
+                        <p class="text-orange-200 text-sm">Learn CSS3 from scratch</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="#notes" class="hover:text-orange-200 transition">Notes</a>
+                    <a href="#examples" class="hover:text-orange-200 transition">Examples</a>
+                    <a href="#resources" class="hover:text-orange-200 transition">Resources</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-gray-100 to-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="css-logo-text mb-4">CSS3</div>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                Master Cascading Style Sheets (CSS) with our comprehensive notes, examples, and interactive learning materials.
+            </p>
+            <div class="max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="text" id="searchInput" 
+                        placeholder="Search CSS topics..." 
+                        class="search-input w-full px-6 py-4 pl-12 rounded-full border-2 border-gray-300 text-gray-700 text-lg shadow-sm">
+                    <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="notes" class="py-8 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-wrap gap-3 justify-center" id="categoryButtons">
+                <button class="category-btn active px-6 py-2 rounded-full border-2 border-[#e34c26] text-[#e34c26] font-semibold transition" data-category="all">All Topics</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="basics">Basics</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="selectors">Selectors</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="box-model">Box Model</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="flexbox">Flexbox</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="grid">Grid</button>
+                <button class="category-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-semibold hover:border-[#e34c26] hover:text-[#e34c26] transition" data-category="animations">Animations</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notes Grid -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="notesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Notes will be inserted here by JavaScript -->
+            </div>
+            <div id="noResults" class="hidden text-center py-12">
+                <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p class="text-gray-500 text-xl">No notes found matching your search.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example Section -->
+    <section id="examples" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Interactive CSS Examples</h2>
+            <p class="text-gray-600 text-center mb-12">Click on any example to copy the code</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="examplesGrid">
+                <!-- Examples will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Learning Resources</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 css-badge rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Documentation</h3>
+                    <p class="text-gray-600 mb-4">Official MDN CSS documentation for in-depth learning.</p>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="text-[#e34c26] font-semibold hover:underline">Visit MDN →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 css-badge rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Practice</h3>
+                    <p class="text-gray-600 mb-4">Interactive coding platforms to sharpen your skills.</p>
+                    <a href="https://codepen.io/" target="_blank" class="text-[#e34c26] font-semibold hover:underline">Try CodePen →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 css-badge rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tutorials</h3>
+                    <p class="text-gray-600 mb-4">Video tutorials from top educators and developers.</p>
+                    <a href="https://www.youtube.com/results?search_query=css+教程" target="_blank" class="text-[#e34c26] font-semibold hover:underline">Watch Videos →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="css-gradient text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="w-10 h-10 bg-white rounded flex items-center justify-center">
+                    <span class="text-xl font-bold text-[#e34c26]">3</span>
+                </div>
+                <span class="text-xl font-bold">CSS Notes</span>
+            </div>
+            <p class="text-orange-200">Learn CSS3 with ease • Built with ❤️ for developers</p>
+            <p class="text-orange-200 text-sm mt-2">© 2024 CSS Notes - Educational Purpose</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-[#264de4] text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300">
+        Code copied to clipboard!
+    </div>
+
+    <script>
+        // Notes Data
+        const notes = [
+            {
+                id: 1,
+                title: "What is CSS?",
+                category: "basics",
+                description: "CSS (Cascading Style Sheets) is used to style and layout web pages. It controls colors, fonts, spacing, and positioning.",
+                code: `/* External CSS */
+<link rel="stylesheet" href="styles.css">
+
+/* Internal CSS */
+<style>
+  body { background: #f0f0f0; }
+</style>
+
+/* Inline CSS */
+<p style="color: blue;">Text</p>`,
+                tags: ["introduction", "basics", "syntax"]
+            },
+            {
+                id: 2,
+                title: "CSS Selectors",
+                category: "selectors",
+                description: "Select elements by tag name, class, ID, attributes, and more to apply styles.",
+                code: `/* Element Selector */
+p { color: blue; }
+
+/* Class Selector */
+.highlight { background: yellow; }
+
+/* ID Selector */
+#header { font-size: 24px; }
+
+/* Attribute Selector */
+input[type="text"] { border: 1px solid; }
+
+/* Pseudo-class */
+:hover { color: red; }`,
+                tags: ["selectors", "classes", "ids"]
+            },
+            {
+                id: 3,
+                title: "Box Model",
+                category: "box-model",
+                description: "Every element is a box with content, padding, border, and margin.",
+                code: `.box {
+  content: 200px 100px;
+  padding: 20px;
+  border: 2px solid #333;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+/* Total width = content + padding + border */`,
+                tags: ["box-model", "layout", "spacing"]
+            },
+            {
+                id: 4,
+                title: "Flexbox Container",
+                category: "flexbox",
+                description: "Create flexible layouts with flexbox. Control direction, alignment, and distribution.",
+                code: `.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}`,
+                tags: ["flexbox", "layout", "responsive"]
+            },
+            {
+                id: 5,
+                title: "Flexbox Items",
+                category: "flexbox",
+                description: "Control how flex items grow, shrink, and align within the container.",
+                code: `.item {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  /* Shorthand */
+  flex: 1 0 200px;
+  
+  /* Individual alignment */
+  align-self: center;
+}`,
+                tags: ["flexbox", "items", "alignment"]
+            },
+            {
+                id: 6,
+                title: "CSS Grid Layout",
+                category: "grid",
+                description: "Create two-dimensional layouts with rows and columns using CSS Grid.",
+                code: `.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+  
+  /* Areas */
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+}`,
+                tags: ["grid", "layout", "2d"]
+            },
+            {
+                id: 7,
+                title: "CSS Animations",
+                category: "animations",
+                description: "Create smooth animations using keyframes and transition properties.",
+                code: `/* Transition */
+.button {
+  transition: all 0.3s ease;
+}
+
+/* Keyframe Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.element {
+  animation: fadeIn 1s ease-in;
+}`,
+                tags: ["animations", "keyframes", "transitions"]
+            },
+            {
+                id: 8,
+                title: "Colors & Backgrounds",
+                category: "basics",
+                description: "Various ways to specify colors and set background images.",
+                code: `.element {
+  /* Color methods */
+  color: #ff6b6b;
+  color: rgb(255, 107, 107);
+  color: rgba(255, 107, 107, 0.5);
+  
+  /* Background */
+  background: url('image.jpg');
+  background-size: cover;
+  background-position: center;
+}`,
+                tags: ["colors", "background", "images"]
+            },
+            {
+                id: 9,
+                title: "Responsive Design",
+                category: "basics",
+                description: "Create layouts that work on all screen sizes using media queries.",
+                code: `/* Mobile First */
+.container {
+  width: 100%;
+  padding: 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container { max-width: 720px; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container { max-width: 960px; }
+}`,
+                tags: ["responsive", "media-queries", "mobile"]
+            },
+            {
+                id: 10,
+                title: "CSS Variables",
+                category: "basics",
+                description: "Define reusable values with custom properties (CSS variables).",
+                code: `:root {
+  --primary-color: #e34c26;
+  --spacing-sm: 8px;
+  --spacing-lg: 24px;
+}
+
+.button {
+  background: var(--primary-color);
+  padding: var(--spacing-sm) var(--spacing-lg);
+}`,
+                tags: ["variables", "custom-properties", "reusable"]
+            },
+            {
+                id: 11,
+                title: "Positioning",
+                category: "box-model",
+                description: "Control element positioning with different positioning schemes.",
+                code: `.element {
+  /* Positioning types */
+  position: static;    /* Default */
+  position: relative;  /* Offset from normal */
+  position: absolute;  /* Relative to parent */
+  position: fixed;     /* Fixed on viewport */
+  position: sticky;    /* Sticky on scroll */
+  
+  /* Offset properties */
+  top: 0;
+  left: 0;
+}`,
+                tags: ["position", "layout", "z-index"]
+            },
+            {
+                id: 12,
+                title: "Grid Areas & Items",
+                category: "grid",
+                description: "Place items in grid areas and control their span.",
+                code: `.item {
+  /* Place in grid area */
+  grid-area: header;
+  
+  /* Span rows/columns */
+  grid-column: 1 / -1;
+  grid-row: 1 / 3;
+  
+  /* Shorthand */
+  grid-area: 1 / 1 / 3 / 3;
+}`,
+                tags: ["grid", "areas", "placement"]
+            }
+        ];
+
+        // Examples Data
+        const examples = [
+            {
+                title: "Gradient Button",
+                code: `.btn-gradient {
+  background: linear-gradient(
+    45deg, 
+    #e34c26, 
+    #264de4
+  );
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+}`,
+                preview: "gradient"
+            },
+            {
+                title: "Card Hover Effect",
+                code: `.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(227,76,38,0.2);
+}`,
+                preview: "card"
+            },
+            {
+                title: "Loading Spinner",
+                code: `.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #e34c26;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`,
+                preview: "spinner"
+            },
+            {
+                title: "Responsive Grid",
+                code: `.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  );
+  gap: 20px;
+  padding: 20px;
+}`,
+                preview: "grid"
+            },
+            {
+                title: "Text Gradient",
+                code: `.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #e34c26 0%,
+    #264de4 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
+}`,
+                preview: "text"
+            },
+            {
+                title: "Flex Center",
+                code: `.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  gap: 16px;
+}
+
+.item {
+  flex: 1;
+  max-width: 150px;
+}`,
+                preview: "flex"
+            }
+        ];
+
+        // DOM Elements
+        const notesGrid = document.getElementById('notesGrid');
+        const examplesGrid = document.getElementById('examplesGrid');
+        const searchInput = document.getElementById('searchInput');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const noResults = document.getElementById('noResults');
+        const toast = document.getElementById('toast');
+
+        let currentCategory = 'all';
+
+        // Render Notes
+        function renderNotes(notesToRender) {
+            notesGrid.innerHTML = notesToRender.map(note => `
+                <div class="note-card bg-white rounded-xl p-6 shadow-md cursor-pointer" 
+                     data-category="${note.category}" 
+                     data-id="${note.id}"
+                     onclick="showNoteDetail(${note.id})">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="css-badge text-white text-xs px-3 py-1 rounded-full">${note.category}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${note.title}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${note.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${note.tags.map(tag => `<span class="text-xs text-gray-400">#${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            if (notesToRender.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Render Examples
+        function renderExamples() {
+            examplesGrid.innerHTML = examples.map((example, index) => `
+                <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg" onclick="copyCode(${index})">
+                    <div class="p-4 bg-gray-800 flex justify-between items-center">
+                        <span class="text-white font-semibold">${example.title}</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <pre class="p-4 overflow-x-auto scrollbar-hide"><code class="text-sm text-green-400 font-mono">${example.code}</code></pre>
+                </div>
+            `).join('');
+        }
+
+        // Show Note Detail Modal
+        function showNoteDetail(noteId) {
+            const note = notes.find(n => n.id === noteId);
+            if (!note) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+            modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+            
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+                    <div class="css-gradient p-6 flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white">${note.title}</h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-white hover:text-gray-200">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6 overflow-y-auto max-h-[60vh]">
+                        <p class="text-gray-600 mb-4">${note.description}</p>
+                        <div class="bg-gray-900 rounded-lg p-4 relative group">
+                            <button onclick="copyToClipboard(\`${note.code.replace(/`/g, '\\`')}\`)" 
+                                    class="absolute top-2 right-2 bg-[#e34c26] text-white px-3 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition">
+                                Copy
+                            </button>
+                            <pre class="text-sm text-green-400 font-mono overflow-x-auto scrollbar-hide"><code>${note.code}</code></pre>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            ${note.tags.map(tag => `<span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">#${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Copy Code
+        function copyCode(index) {
+            const code = examples[index].code;
+            copyToClipboard(code);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Code copied to clipboard!');
+            });
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2000);
+        }
+
+        // Filter Notes
+        function filterNotes() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            const filtered = notes.filter(note => {
+                const matchesCategory = currentCategory === 'all' || note.category === currentCategory;
+                const matchesSearch = note.title.toLowerCase().includes(searchTerm) ||
+                                    note.description.toLowerCase().includes(searchTerm) ||
+                                    note.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                return matchesCategory && matchesSearch;
+            });
+            
+            renderNotes(filtered);
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', filterNotes);
+
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                filterNotes();
+            });
+        });
+
+        // Initialize
+        renderNotes(notes);
+        renderExamples();
+    </script>
+</body>
+</html>
